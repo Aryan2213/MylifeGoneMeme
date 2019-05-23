@@ -6,15 +6,16 @@ public class PlayerPlatformerController : PhysicsObject
 {
     public float maxSpeed = 7;
     public float jumpTakeOffSpeed = 7;
-
+    private Animator player;
     private SpriteRenderer spriteRenderer;
-    private Animator animator;
+
 
     // Use this for initialization
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
+        player = GetComponent<Animator>();
+
     }
 
     protected override void ComputeVelocity()
@@ -22,6 +23,8 @@ public class PlayerPlatformerController : PhysicsObject
         Vector2 move = Vector2.zero;
 
         move.x = Input.GetAxis("Horizontal");
+
+        player.SetFloat("Run", Mathf.Abs(move.x));
 
         if (Input.GetButtonDown("Jump") && grounded)
         {
@@ -35,14 +38,12 @@ public class PlayerPlatformerController : PhysicsObject
             }
         }
 
-        bool flipSprite = (spriteRenderer.flipX ? (move.x > 0.001f) : (move.x < 0.001f));
+        bool flipSprite = (spriteRenderer.flipX ? (move.x > 0.001f) : (move.x < 0f));
         if (flipSprite)
         {
             spriteRenderer.flipX = !spriteRenderer.flipX;
         }
 
-        animator.SetBool("grounded", grounded);
-        animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / maxSpeed);
 
         targetVelocity = move * maxSpeed;
     }
