@@ -60,8 +60,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\old\PhysicsObject.cs" />
-    <Compile Include="Assets\Scripts\old\PlayerPlatformerController.cs" />
+    <Compile Include="Assets\Scripts\Player\PhysicsObject.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerPlatformerController.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/aryan.pourranjbar2/Documents/GitHub/MylifeGoneMeme/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
