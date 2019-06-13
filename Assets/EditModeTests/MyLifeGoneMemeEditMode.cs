@@ -31,7 +31,7 @@ namespace Tests
 
             var enemy = GameObject.FindObjectOfType<Enemy>();
 
-            yield return new WaitForFixedUpdate();
+            yield return null;
             Assert.IsTrue(enemy.enemyHit = true);
          
 
