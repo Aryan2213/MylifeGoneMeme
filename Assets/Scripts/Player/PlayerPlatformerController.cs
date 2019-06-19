@@ -8,6 +8,7 @@ public class PlayerPlatformerController : PhysicsObject
     public float jumpTakeOffSpeed = 7;
     private Animator player;
     private SpriteRenderer spriteRenderer;
+    public Attack1 attack;
 
 
     // Use this for initialization
@@ -17,7 +18,41 @@ public class PlayerPlatformerController : PhysicsObject
         player = GetComponent<Animator>();
 
     }
-    
+
+    protected override void Attack()
+    {
+
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            player.SetTrigger("Attack");
+
+
+        }
+
+
+    }
+
+    public void OnEnableColider2D()
+    {
+        if (!spriteRenderer.flipX)
+        {
+            attack.rightAttackTrigger.enabled = true;
+            
+
+        }
+        if (spriteRenderer.flipX)
+        {
+            attack.leftAttackTrigger.enabled = true;
+            
+        }
+    }
+
+    public void DisableColider2D()
+    {
+        attack.rightAttackTrigger.enabled = false;
+        attack.leftAttackTrigger.enabled = false;
+    }
     protected override void ComputeVelocity()
     {
         Vector2 move = Vector2.zero;
@@ -50,7 +85,7 @@ public class PlayerPlatformerController : PhysicsObject
         targetVelocity = move * maxSpeed;
 
 
-      
+
     }
 
 }
